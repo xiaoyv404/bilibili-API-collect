@@ -2,6 +2,11 @@ name: deploy and publish
 
 on: [push]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -29,10 +34,6 @@ jobs:
         path: '.vuepress/dist/'
   deploy:
     needs: build
-
-    permissions:
-      pages: write
-      id-token: write
 
     environment:
       name: github-pages
